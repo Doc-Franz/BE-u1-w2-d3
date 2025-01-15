@@ -19,12 +19,8 @@ public class Main {
         Product p7 = new Product(7L,"boys1", "Boys", 100.0);
         Product p8 = new Product(8L,"boys2", "Boys", 80.0);
         Product p9 = new Product(9L,"boys3", "Boys", 130.5);
-        products1.add(p1);
-        products1.add(p2);
-        products1.add(p2);
-        products2.add(p4);
-        products2.add(p5);
-        products2.add(p6);
+        products1.addAll(Arrays.asList(p1, p2, p3));
+        products2.addAll(Arrays.asList(p4, p5, p6));
 
         Stream<Product> prodottiPerPrezzo = products1.stream().filter(element -> element.category.equals("Books") && element.price > 100);
         prodottiPerPrezzo.forEach(product -> System.out.println(product.toString()));
@@ -41,11 +37,7 @@ public class Main {
         Order o3 = new Order(3L, "arrival", LocalDate.of(2025,2,24),LocalDate.of(2025, 3, 27),products2, c1);
         Order o4 = new Order(4L, "not started", LocalDate.of(2021,3,15),LocalDate.of(2025, 3, 27),products2, c3);
         Order o5 = new Order(5L, "arrival", LocalDate.of(2025,2,24),LocalDate.of(2025, 3, 27),products2, c1);
-        orders.add(o1);
-        orders.add(o2);
-        orders.add(o3);
-        orders.add(o4);
-        orders.add(o5);
+        orders.addAll(Arrays.asList(o1, o2, o3, o4, o5));
 
         Stream<Order> ordiniBaby = orders.stream().filter(order -> order.products.stream().allMatch(product -> product.category.equals("Baby")));
         ordiniBaby.forEach(order -> System.out.println(order.toString()));
@@ -54,15 +46,7 @@ public class Main {
         //esercizio 3
         System.out.println("----------esercizio3----------");
         List<Product> allProducts = new ArrayList<>();
-        allProducts.add(p1);
-        allProducts.add(p2);
-        allProducts.add(p3);
-        allProducts.add(p4);
-        allProducts.add(p5);
-        allProducts.add(p6);
-        allProducts.add(p7);
-        allProducts.add(p8);
-        allProducts.add(p9);
+        allProducts.addAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9));
 
         Stream<Product> productForBoys = allProducts.stream().filter(product -> product.category.equals("Boys")).map(product -> new Product(product.id, product.name, product.category, product.price * 0.9));
         productForBoys.forEach(product -> System.out.println(product.toString()));
