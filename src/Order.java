@@ -20,6 +20,6 @@ public class Order {
 
     @Override
     public String toString(){
-        return "L'ordine con ID" + id + " è allo stato " + status + " per il cliente " + customer.toString();
+        return "L'ordine con ID" + id + " è allo stato " + status + " per il cliente " + customer.toString() + " in data " + orderDate.toString();
     }
 }

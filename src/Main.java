@@ -34,13 +34,18 @@ public class Main {
         System.out.println("----------esercizio2----------");
         Customer c1 = new Customer(1L, "customer1", 3);
         Customer c2 = new Customer(2L, "customer2", 2);
+        Customer c3 = new Customer(3L, "customer3", 2);
         List<Order> orders = new ArrayList<>();
-        Order o1 = new Order(1L, "on the way", LocalDate.of(2025,2,24),LocalDate.of(2025, 3, 27),products1, c1);
-        Order o2 = new Order(2L, "not started", LocalDate.of(2025,2,24),LocalDate.of(2025, 3, 27),products2, c2);
+        Order o1 = new Order(1L, "on the way", LocalDate.of(2025,2,2),LocalDate.of(2025, 3, 27),products1, c1);
+        Order o2 = new Order(2L, "not started", LocalDate.of(2021,2,24),LocalDate.of(2025, 3, 27),products2, c2);
         Order o3 = new Order(3L, "arrival", LocalDate.of(2025,2,24),LocalDate.of(2025, 3, 27),products2, c1);
+        Order o4 = new Order(4L, "not started", LocalDate.of(2021,3,15),LocalDate.of(2025, 3, 27),products2, c3);
+        Order o5 = new Order(5L, "arrival", LocalDate.of(2025,2,24),LocalDate.of(2025, 3, 27),products2, c1);
         orders.add(o1);
         orders.add(o2);
         orders.add(o3);
+        orders.add(o4);
+        orders.add(o5);
 
         Stream<Order> ordiniBaby = orders.stream().filter(order -> order.products.stream().allMatch(product -> product.category.equals("Baby")));
         ordiniBaby.forEach(order -> System.out.println(order.toString()));
@@ -61,6 +66,12 @@ public class Main {
 
         Stream<Product> productForBoys = allProducts.stream().filter(product -> product.category.equals("Boys")).map(product -> new Product(product.id, product.name, product.category, product.price * 0.9));
         productForBoys.forEach(product -> System.out.println(product.toString()));
+        System.out.println("");
+
+        //esercizio 4
+        System.out.println("----------esercizio4----------");
+        Stream<Order> prodottiPerData = orders.stream().filter(order -> order.customer.tier == 2 && order.orderDate.isAfter(LocalDate.of(2021, 2, 1)) && order.orderDate.isBefore(LocalDate.of(2021, 4, 1)));
+        prodottiPerData.forEach(order -> System.out.println(order.toString()));
 
 
 
